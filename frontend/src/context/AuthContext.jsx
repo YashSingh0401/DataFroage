@@ -21,7 +21,10 @@ export function AuthProvider({ children }) {
 
   const loginGoogle = async () => {
     try { clearError(); await signInWithPopup(auth, googleProvider) }
-    catch (e) { setError(e.code === 'auth/popup-closed-by-user' ? '' : 'Google sign-in failed. Try again.') }
+    catch (e) {
+      console.error("Google Sign-In Error:", e);
+      setError(e.code === 'auth/popup-closed-by-user' ? '' : 'Google sign-in failed. Try again.')
+    }
   }
 
   const loginFacebook = async () => {
